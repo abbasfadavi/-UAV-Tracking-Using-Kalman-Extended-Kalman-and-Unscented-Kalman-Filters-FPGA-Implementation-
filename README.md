@@ -39,23 +39,19 @@ All filters are implemented in **single-precision floating point (`float`)** and
 
 ---
 
-## 🧠 Future Work
-1. **Unified Comparative Framework**  
-   Create a single MATLAB and HLS environment that runs all three filters on the same dataset, enabling direct performance comparison (accuracy, RMSE, latency).
+### FPGA Resource Utilization and RMSE Comparison
 
-2. **Performance and Resource Reports**  
-   Generate and publish Vivado HLS reports for each filter, showing resource utilization (DSPs, LUTs, FFs, BRAM) and latency metrics on **XC7K410T-FFG900-2**.
+| Filter | Latency | BRAM | DSP | FF  | LUT  | RMSE (Position) | RMSE (Velocity) |
+|:-------|:--------|:-----|:----|:----|:----:|:----------------|:----------------|
+| **KF**  | 2 µs  | 5 | 146 | 11k | 15k | **0.59** | 1.34 |
+| **EKF** | 14 ms | 8 | 89  | 20k | 20k | 1.18 | 0.98 |
+| **UKF** | 17 ms | 5 | 39  | 7k  | 10k | 0.70 | **0.86** |
 
----
+> **Notes:**
+> - All implementations were tested on **Xilinx Kintex-7 XC7K410T-FFG900-2**.
+> - Latency is measured after C/RTL co-simulation.
+> - RMSE is computed by comparing MATLAB simulation results with HLS outputs.
 
-## 📈 Example Output
-Example comparison table (expected after unified framework integration):
-
-| Filter | RMSE (Position) | RMSE (Velocity) | Latency (cycles) | DSPs Used |
-|--------|----------------|----------------|------------------|------------|
-| KF | 0.35 | 0.28 | 14,000 | 210 |
-| EKF | 0.29 | 0.25 | 18,500 | 280 |
-| UKF | 0.20 | 0.19 | 22,000 | 310 |
 
 ---
 
