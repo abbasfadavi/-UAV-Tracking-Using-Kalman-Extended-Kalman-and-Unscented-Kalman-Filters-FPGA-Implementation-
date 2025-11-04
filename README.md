@@ -47,6 +47,28 @@ All filters are implemented in **single-precision floating point (`float`)** and
 | **EKF** | 14 ms | 8 | 89  | 20k | 20k | 1.18 | 0.98 |
 | **UKF** | 17 ms | 5 | 39  | 7k  | 10k | 0.70 | **0.86** |
 
+🛰️ Comparison of Kalman Filter, Extended Kalman Filter, and Unscented Kalman Filter
+
+This project compares three filtering algorithms — Kalman Filter (KF), Extended Kalman Filter (EKF), and Unscented Kalman Filter (UKF) — using the same trajectory data.
+The goal is to evaluate accuracy, stability, and robustness in the presence of nonlinear motion and measurement noise.
+
+
+![compare](https://github.com/user-attachments/assets/ce1be26c-e6da-490e-8a94-a53015c8610a)
+🔹 Simulation Results
+
+Below is the comparison between the three filters when applied to the same target trajectory:
+
+🔹 Interpretation
+
+KF (Red) → Performs well when the system is nearly linear. It maintains a stable and accurate estimate.
+
+EKF (Blue) → Shows divergence and high error accumulation. This happens because EKF linearizes the nonlinear model using Jacobians, which can introduce significant approximation errors if the motion model is strongly nonlinear or the initial estimate is poor.
+
+UKF (Green) → Produces the best overall performance. By using sigma points to capture the true mean and covariance, UKF handles nonlinearities much better and remains stable even under noisy or curved trajectories.
+
+
+
+
 > **Notes:**
 > - All implementations were tested on **Xilinx Kintex-7 XC7K410T-FFG900-2**.
 > - Latency is measured after C/RTL co-simulation.
