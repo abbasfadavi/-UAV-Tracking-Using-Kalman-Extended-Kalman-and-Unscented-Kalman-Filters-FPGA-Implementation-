@@ -66,6 +66,9 @@ EKF (Blue) → Shows divergence and high error accumulation. This happens becaus
 
 UKF (Green) → Produces the best overall performance. By using sigma points to capture the true mean and covariance, UKF handles nonlinearities much better and remains stable even under noisy or curved trajectories.
 
+### 3D Trajectory Comparison
+The figure below shows the real trajectory (black) and the estimated ones by UKF.
+![compare1](https://github.com/user-attachments/assets/ea3e79f3-2977-4a0b-aebb-e774b005cf6d)
 
 
 
